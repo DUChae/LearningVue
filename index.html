@@ -1,0 +1,19 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- vue관련 라이브러리를 파일 안에서 사용할 수 있도록 라이브러리 CDN링크를 갖고오겠음 -->
+<!-- CDN(Content Delivery Network)는 vue.js파일을 어딘가에 배포를 해놓고 빠르게 접근할 수 있게 링크 제공하는 것 -->
+
+<div id="app">{{message}}</div>
+<!-- message라는 것은 Vue안에 있는 데이터를 연결하여 화면에 표기하겠다는 의미함 -->
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        message: 'Hello Vue 3!'
+      }
+    }
+  }).mount('#app')
+  //vue를 사용할 인스턴스를 만들고, 인스턴스를 화면에 붙임
+  //mount는 인스턴스를 화면에 붙이는 역할을 함
+  //mount안에 있는 #app은 id가 app인 태그를 의미하며 div태그를 의미함
+</script>
