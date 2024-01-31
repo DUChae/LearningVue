@@ -114,7 +114,7 @@ vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
 </script>
 ```
 
-![Untitled 1](https://github.com/DUChae/LearningVue/assets/97602018/ea351002-55cf-4ffa-8afc-bfb47e2c0d7a)
+![Untitled 1](https://github.com/DUChae/LearningVue/assets/97602018/a6087d2b-1618-43f9-b1d4-6611bae9b88b)
 
 
 - data 객체 생성
