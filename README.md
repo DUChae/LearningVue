@@ -116,7 +116,6 @@ vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
 
 ![Untitled 1](https://github.com/DUChae/LearningVue/assets/97602018/a6087d2b-1618-43f9-b1d4-6611bae9b88b)
 
-
 - data 객체 생성
 - proxy constructor 생성, 첫번째 인자로 data를 전달하며 data를 감시하고 있다가 변화가 있으면 알려줌
 - 두번째 인자로 data를 정의하는 객체를 전달
@@ -149,5 +148,58 @@ vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
 
 - proxy를 통해 data의 속성을 접근하면 get의 내용이 출력되고, data의 속성을 갱신하면 set의 내용이 출력됨
 - 객체의 동작을 정의할 수 있고 추가적으로 지정할 수 있음
+
+# 동작 원리 구현
+
+위에서 proxy에 대해 get , set을 정의했었기 때문에 set하는 동작을 가지고 data의 a의 값이 변경되었을 때 그 값을 이용하여 화면에 출력하는 것을 해보겠습니다.
+
+```jsx
+<div id="app">
+  <!-- 여기에 뭔가 렌더링 된다.
+    렌더링 : 화면에 무언가를 표시하는 행위
+    -->
+</div>
+
+<script>
+  const data = {
+    message: 10
+  }
+  function render(sth) {
+    const div = document.querySelector('#app')
+    div.innerHTML = sth
+  }
+  const app = new Proxy(data, {
+    get() {
+      console.log('값 접근')
+    },
+
+    set(target, prop, newValue) {
+      target[prop] = newValue
+      render(newValue)
+      console.log('값 갱신')
+    }
+  })
+</script>
+<!-- 데이터가 변하는 것에 따라 객체의 내용이 변함에 따라 자연스럽게 화면의 내용도 일치해서 바뀌는 시스템이
+바로 리액티비티 시스템임
+
+-->
+```
+
+- data라는 객체를 만들고 key값은 message에 value값은 10을 설정합니다.
+- `render ()`
+  - 메세지의 값이 변했을 때 이 콘솔로그만 출력하는 것이 아니라 화면에 출력해보기 위해 위쪽 div 태그에 값이 출력되도록 간단하게 함수를 만들어보겠습니다.
+  - `document.querySelector('#app')` 이 코드를 통해 자연스럽게 div 태그로 접근할 수 있는 다큐멘트 쿼리 셀렉터라고 하는 DOM API 입니다.
+  - `DOM API` : HTML 태그 정보에 접근할 수 있는 기능입니다.
+  - 이렇게 만든 render 함수를 app 객체에 Proxy를 적용할 때 함께 넘겨줍니다.
+  - 쿼리 셀렉터의 결과는 div라고 하겠습니다.
+  - render()에 값을 넣게 되면 div태그 안쪽에 결과값이 출력됩니다.
+- `set()`
+  - set에 처음으로 들어오는 값은 target, prop, value 이며 API스펙에 정의되어 있습니다.
+  - 객체의 속성 값에다가 새로운 값 value를 넣어줍니다.
+  - 단순히 세팅하는 것 뿐만 아니라 render()에 새로운 값을 넣어주면 새롭게 세팅된 값을 속성에 집어넣습니다.
+  - 그 다음에 렌더라는 함수를 이용하여 화면에 div 태그에다가 집어넣겠다고 보면 됩니다.
+
+⇒ 데이터가 변하는 것에 따라 객체의 내용이 변함에 따라 자연스럽게 화면의 내용도 일치해서 바뀌는 시스템이 바로 `리액티비티 시스템`입니다.
 
 </details>
