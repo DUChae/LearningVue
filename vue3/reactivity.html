@@ -2,14 +2,21 @@
 
 <script>
   const data = {
-    a: 10
+    message: 10
   }
+  function render(sth) {
+    const div = document.querySelector('#app')
+    div.innerHTML = sth
+  }
+
   const app = new Proxy(data, {
     get() {
       console.log('값 접근')
     },
 
-    set() {
+    set(target, prop, newValue) {
+      target[prop] = newValue
+      render(newValue)
       console.log('값 갱신')
     }
   })
