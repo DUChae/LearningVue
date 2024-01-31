@@ -114,7 +114,8 @@ vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
 </script>
 ```
 
-![Untitled](Vue%20js%20592c21c9ddc04157bf5095a04490ac0c/Untitled%201.png)
+![Untitled 1](https://github.com/DUChae/LearningVue/assets/97602018/ea351002-55cf-4ffa-8afc-bfb47e2c0d7a)
+
 
 - data 객체 생성
 - proxy constructor 생성, 첫번째 인자로 data를 전달하며 data를 감시하고 있다가 변화가 있으면 알려줌
