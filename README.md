@@ -145,7 +145,7 @@ vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
 </script>
 ```
 
-![Untitled](Vue%20js%20592c21c9ddc04157bf5095a04490ac0c/Untitled%202.png)
+![Untitled 2](https://github.com/DUChae/LearningVue/assets/97602018/bb66b3af-ddf0-4bfd-9755-3b1523577c25)
 
 - proxy를 통해 data의 속성을 접근하면 get의 내용이 출력되고, data의 속성을 갱신하면 set의 내용이 출력됨
 - 객체의 동작을 정의할 수 있고 추가적으로 지정할 수 있음
