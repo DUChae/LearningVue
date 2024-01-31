@@ -91,3 +91,62 @@
 
 - 위 사진에서 message의 값을 바꿀 수 있는데, 이는 데이터의 변화에 따라 화면의 UI 값이 바뀌는 것이 `vue`에서 추구하는 `리액티비티`입니다.
 </details>
+
+<details>
+<summary>Vue.js 핵심 동작 원리</summary>
+
+리액티비티의 예를 소개한 위의 내용과 같이 데이터를 변경하면 화면이 변경되고 있었습니다. 이러한 동작은 내부 구현이 어떻게 되었는지 이해하면 도움이 되기에 간단히 구현해보겠습니다.
+
+vue 3폴더를 만든 후, reactivity.html파일을 만들었습니다.
+
+```jsx
+<div id="app"></div>
+
+<script>
+  const data = {
+    a: 10
+  }
+  const app = new Proxy(data, {
+    get() {
+      console.log('hi')
+    }
+  })
+</script>
+```
+
+![Untitled](Vue%20js%20592c21c9ddc04157bf5095a04490ac0c/Untitled%201.png)
+
+- data 객체 생성
+- proxy constructor 생성, 첫번째 인자로 data를 전달하며 data를 감시하고 있다가 변화가 있으면 알려줌
+- 두번째 인자로 data를 정의하는 객체를 전달
+- Data라는 동작을 모방하는 무언가를 만들겠다는 것
+- data와 app은 동일한 객체를 가리키고 있으며 같은 결과를 보여줌, get의 내용이 바뀌면 Data의 내용도 바뀜
+- new Proxy라는 것이 data라는 객체를 모방한 다음 동작을 추가했다고 보면되는데 get은 data라는 객체의 속성을 접근할 때마다 출력할 내용이라고 보면 됨
+- data의 객체의 속성을 설정한다면 어떤 동작을 지정해볼 수 있을 것같은데 set으로 지정해보겠음
+
+```jsx
+<div id="app"></div>
+
+<script>
+  const data = {
+    a: 10
+  }
+
+  const app = new Proxy(data, {
+    get() {
+      console.log('값 접근')
+    },
+
+    set() {
+      console.log('값 갱신')
+    }
+  })
+</script>
+```
+
+![Untitled](Vue%20js%20592c21c9ddc04157bf5095a04490ac0c/Untitled%202.png)
+
+- proxy를 통해 data의 속성을 접근하면 get의 내용이 출력되고, data의 속성을 갱신하면 set의 내용이 출력됨
+- 객체의 동작을 정의할 수 있고 추가적으로 지정할 수 있음
+
+</details>
