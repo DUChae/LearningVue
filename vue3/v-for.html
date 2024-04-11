@@ -1,0 +1,18 @@
+<!-- HTML -->
+<div id="app">
+  <ul>
+    <li v-for="fruit in fruits">{{ fruit }}</li>
+  </ul>
+</div>
+
+<!-- JS -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        fruits: ['Apple', 'Banana', 'Mango', 'Orange']
+      }
+    }
+  }).mount('#app')
+</script>

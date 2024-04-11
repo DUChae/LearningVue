@@ -244,3 +244,44 @@ const app = createApp({
 - `.mount(’#app’)` : 어느 부분에다가 vue의 인스턴스를 적용할지 하는 부분이 마운트라고 보면 됩니다.
 - 콘솔로 보면 인스턴스를 만들었기 때문에 <Root>를 볼 수 있고 그 안에 데이터까지 볼 수 있습니다.
 </details>
+
+# 앱 인스턴스
+
+Vue로 개발을 시작할 때 기본적으로 생성해야 되는 애플리케이션 인스턴스를 알아보겠습니다.
+
+```JavaScript
+//공식 문서
+import {createApp} from 'vue'
+const app=createApp({
+	/*최상위 컴포넌트 옵션 */
+})
+```
+
+그 전에 위에서 작성한 코드들을 보겠습니다.
+
+```JavaScript
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<body>
+  <div id="app">{{message}}</div>
+</body>
+
+<script>
+  Vue.createApp({
+
+    data() {
+      return {
+        message: 'Hello Vue 3!'
+      }
+    }
+  }).mount('\#app')
+</script>
+
+```
+
+- `Vue.createApp` 은 애플리케이션 인스턴스를 생성하는 부분입니다.
+- Vue는 이렇게 인스턴스를 만들어서 유효하게 다룰 수 있는 화면의 영역을 지정해줘야합니다.
+  - 화면의 영역 :`<body>`태그 안에 있는 모든 HTML태그를 의미합니다.
+- `.mount(’\#app’)` : 어느 부분에다가 vue의 인스턴스를 적용할지 하는 부분이 마운트라고 보면 됩니다.
+- 콘솔로 보면 인스턴스를 만들었기 때문에 <Root>를 볼 수 있고 그 안에 데이터까지 볼 수 있습니다.
+
+이렇게 Vue.js를 개발할 때는 기본적으로 `Vue.createApp`이라고 하는 것을 선행적으로 무조건 작성하고 실행해줘야한다.
